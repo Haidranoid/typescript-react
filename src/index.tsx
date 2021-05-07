@@ -1,12 +1,13 @@
-import React from 'react';
+import {FC} from 'react';
 import ReactDom from 'react-dom'
+import {Provider} from "react-redux";
 
-import SearchUser from "./refs/SearchUser";
+import store from "./redux/store/store";
 
-const App: React.FC = () => {
-    return <div>
-        <SearchUser />
-    </div>
+const App: FC = () => {
+    return <Provider store={store}>
+
+    </Provider>
 }
 
 ReactDom.render(<App/>, document.getElementById('root'));
