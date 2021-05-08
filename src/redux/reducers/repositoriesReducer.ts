@@ -1,34 +1,49 @@
-import {
-    SEARCH_REPOSITORIES,
-    SEARCH_REPOSITORIES_SUCCESS,
-    SEARCH_REPOSITORIES_ERROR
-} from "../types";
+import {RepositoriesTypes} from "../types";
+import {IRepositoriesActions} from "../actions/repositories"
 
-const initialState = {
-    data: [],
-    loading: false,
-    error: false,
+export interface IRepositoriesState {
+    data: string[],
+
+    loading: boolean,
+    error: string | null,
 }
 
-const repositoriesReducer = (state = initialState, action: any) => {
+const initialState: IRepositoriesState = {
+    data: [],
+
+    loading: false,
+    error: null,
+}
+
+const repositoriesReducer = (
+    state: IRepositoriesState = initialState,
+    action: IRepositoriesActions
+): IRepositoriesState => {
 
     switch (action.type) {
-        case SEARCH_REPOSITORIES:
+        case RepositoriesTypes.SEARCH_REPOSITORIES_START:
+
             return {
+                ...state,
+
                 loading: true,
-                error: false,
+                error: null,
             }
 
-        case SEARCH_REPOSITORIES_SUCCESS:
+        case RepositoriesTypes.SEARCH_REPOSITORIES_SUCCESS:
             return {
-                loading: true,
-                error: false,
+                data: action.payload,
+
+                loading: false,
+                error: null,
             }
 
-        case SEARCH_REPOSITORIES_ERROR:
+        case RepositoriesTypes.SEARCH_REPOSITORIES_ERROR:
             return {
-                loading: true,
-                error: false,
+                ...state,
+
+                loading: false,
+                error: action.payload,
             }
 
         default:
