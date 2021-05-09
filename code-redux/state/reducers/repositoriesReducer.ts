@@ -1,5 +1,5 @@
-import {RepositoriesTypes} from "../types";
-import {IRepositoriesActions} from "../actions/repositories"
+import RepositoriesTypes from "../actions-types/repositoriesTypes";
+import IRepositoriesActions from "../actions/repositories"
 
 export interface IRepositoriesState {
     data: string[],
